@@ -1,6 +1,7 @@
 package com.example.weather_app.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -13,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weather_app.ui.theme.UrbanistFont
-import com.example.weather_app.ui.theme.secondaryColor
+import com.example.weather_app.ui.theme.secondaryTextColor
 
 @Composable
 fun LocationHeader(
@@ -24,13 +25,14 @@ fun LocationHeader(
 ) {
     Row(
         modifier,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
             painter = icon,
             contentDescription = "location icon",
             colorFilter = ColorFilter.tint(
-                secondaryColor(isNightMode)
+                secondaryTextColor(isNightMode)
             )
         )
         Text(
@@ -40,7 +42,7 @@ fun LocationHeader(
             fontSize = 16.sp,
             lineHeight = 20.sp,
             letterSpacing = 0.25.sp,
-            color = secondaryColor(isNightMode),
+            color = secondaryTextColor(isNightMode),
             modifier = Modifier
                 .padding(start = 4.dp)
                 .align(Alignment.CenterVertically)
