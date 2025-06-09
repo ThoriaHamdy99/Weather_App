@@ -2,7 +2,16 @@ package com.example.weather_app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-fun primaryColor(
+fun cardBackgroundColor(
+    isNightMode: Boolean
+): Color {
+    if (isNightMode) {
+        return DarkPurpleColor
+    }
+    return WhiteColor
+}
+
+fun borderBackgroundColor(
     isNightMode: Boolean
 ): Color {
     if (isNightMode) {
@@ -11,7 +20,16 @@ fun primaryColor(
     return DarkPurpleColor
 }
 
-fun secondaryColor(
+fun primaryTextColor(
+    isNightMode: Boolean
+): Color {
+    if (isNightMode) {
+        return WhiteColor
+    }
+    return DarkPurpleColor
+}
+
+fun secondaryTextColor(
     isNightMode: Boolean
 ): Color {
     if (isNightMode) {
