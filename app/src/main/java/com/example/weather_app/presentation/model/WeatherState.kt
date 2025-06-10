@@ -154,11 +154,15 @@ enum class WeatherState(
         99,
         R.drawable.day_thunderstrom_with_heavy_hail,
         R.drawable.night_thunderstrom_with_heavy_hail
-    );
+    ),
+    UNKNOWN_STATE("Clear sky", 0, R.drawable.day_clear_sky, R.drawable.night_clear_sky)
+    ;
 
-    fun getWeatherState(code: Int): WeatherState? {
-        return entries.find { weatherState ->
-            weatherState.code == code
+    companion object {
+        fun getWeatherState(code: Int): WeatherState {
+            return entries.find { weatherState ->
+                weatherState.code == code
+            } ?: UNKNOWN_STATE
         }
     }
 }
