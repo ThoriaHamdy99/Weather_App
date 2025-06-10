@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "1.9.21"
 }
 
 android {
@@ -63,6 +64,8 @@ dependencies {
 
     // Koin Android features
     implementation(libs.koin.android)
+
+    implementation(libs.kotlinx.datetime)
 }
 
 fun ktorDependencies() {
