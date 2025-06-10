@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.weather_app.ui.model.WeatherDetails
+import com.example.weather_app.presentation.model.WeatherDetails
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

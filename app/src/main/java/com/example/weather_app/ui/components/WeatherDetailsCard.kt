@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.ui.model.WeatherDetails
+import com.example.weather_app.presentation.model.WeatherDetails
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.borderBackgroundColor
 import com.example.weather_app.ui.theme.cardBackgroundColor

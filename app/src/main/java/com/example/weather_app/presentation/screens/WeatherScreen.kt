@@ -1,4 +1,4 @@
-package com.example.weather_app.ui.screens
+package com.example.weather_app.presentation.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -20,8 +20,8 @@ import com.example.weather_app.ui.components.NextDaysWeather
 import com.example.weather_app.ui.components.TodayWeather
 import com.example.weather_app.ui.components.WeatherDetails
 import com.example.weather_app.ui.components.WeatherHeader
-import com.example.weather_app.ui.model.WeatherDetails
-import com.example.weather_app.ui.model.WeatherState
+import com.example.weather_app.presentation.model.WeatherDetails
+import com.example.weather_app.presentation.model.WeatherState
 import com.example.weather_app.ui.theme.primaryBackgroundColor
 import com.example.weather_app.ui.theme.secondaryBackgroundColor
 
