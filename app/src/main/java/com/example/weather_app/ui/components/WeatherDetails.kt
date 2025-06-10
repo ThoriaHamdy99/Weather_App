@@ -6,14 +6,14 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.weather_app.presentation.model.WeatherDetails
+import com.example.weather_app.presentation.model.CurrentWeatherDetails
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun WeatherDetails(
     modifier: Modifier = Modifier,
     isNightMode: Boolean,
-    weatherDetailsList: List<WeatherDetails>
+    currentWeatherDetailsList: List<CurrentWeatherDetails>
 ) {
     FlowRow(
         modifier = modifier,
@@ -21,7 +21,7 @@ fun WeatherDetails(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
-        weatherDetailsList.forEach { weatherDetails ->
+        currentWeatherDetailsList.forEach { weatherDetails ->
             WeatherDetailsCard(
                 Modifier.weight(1f),
                 isNightMode,

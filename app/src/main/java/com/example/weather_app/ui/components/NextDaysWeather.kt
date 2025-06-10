@@ -4,20 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.R
+import com.example.weather_app.domain.model.DailyWeather
+import com.example.weather_app.presentation.model.WeatherState
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.borderBackgroundColor
 import com.example.weather_app.ui.theme.cardBackgroundColor
@@ -28,10 +26,7 @@ fun NextDaysWeather(
     modifier: Modifier = Modifier,
     isNightMode: Boolean,
     numberOfNextDays: Int,
-    days: List<String>,
-    painters: List<Painter>,
-    highTemperatureList: List<String>,
-    lowTemperatureList: List<String>
+    dailyWeather: List<DailyWeather>
 
 ) {
     Column(
@@ -65,15 +60,19 @@ fun NextDaysWeather(
                 .padding(top = 4.dp)
         ) {
             Column {
-                for (i in 0..<numberOfNextDays) {
+                dailyWeather.forEach { dailyWeather ->
+                    val weatherState = WeatherState.getWeatherState(dailyWeather.weatherCode)
                     NextDayCard(
                         isNightMode = isNightMode,
-                        day = days[i],
-                        painter = painters[i],
-                        highTemperature = highTemperatureList[i],
-                        lowTemperature = lowTemperatureList[i]
+                        day = dailyWeather.date,
+                        painter = painterResource(
+                            if (isNightMode) {
+                                weatherState.nightImageResourceId
+                            } else weatherState.dayImageResourceId
+                        ),
+                        highTemperature = dailyWeather.maxTemp.toInt().toString(),
+                        lowTemperature = dailyWeather.minTemp.toInt().toString()
                     )
-                    if (i + 1 == numberOfNextDays) continue
                     HorizontalDivider(
                         thickness = 1.dp,
                         color = borderBackgroundColor(isNightMode).copy(0.08f),
@@ -82,36 +81,4 @@ fun NextDaysWeather(
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun NextDaysWeatherPreview() {
-    NextDaysWeather(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp),
-        isNightMode = true,
-        numberOfNextDays = 7,
-        days = listOf(
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-        ),
-        painters = listOf(
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky)
-        ),
-        highTemperatureList = listOf("20", "30", "40", "50", "60", "70", "80"),
-        lowTemperatureList = listOf("20", "30", "40", "50", "60", "70", "80")
-    )
 }

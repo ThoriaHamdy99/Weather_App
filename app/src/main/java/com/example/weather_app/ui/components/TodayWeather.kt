@@ -9,13 +9,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.R
+import com.example.weather_app.domain.model.HourlyWeather
+import com.example.weather_app.presentation.model.WeatherState
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.primaryTextColor
 
@@ -24,9 +23,7 @@ fun TodayWeather(
     modifier: Modifier,
     isNightMode: Boolean,
     numberOfDays: Int,
-    temperatureList: List<String>,
-    hours: List<String>,
-    painters: List<Painter>
+    hourlyWeatherList: List<HourlyWeather>
 ) {
     Column(
         modifier = modifier
@@ -47,36 +44,22 @@ fun TodayWeather(
             contentPadding = PaddingValues(horizontal = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            for (i in 0..numberOfDays) {
+            hourlyWeatherList.forEach { hourlyWeather ->
+                val weatherState = WeatherState.getWeatherState(hourlyWeather.weatherCode)
                 item {
                     TodayWeatherCard(
                         Modifier.width(88.dp),
                         isNightMode = isNightMode,
-                        temperature = temperatureList[i],
-                        hour = hours[i],
-                        painter = painters[i]
+                        temperature = hourlyWeather.temperature.toInt().toString(),
+                        hour = hourlyWeather.time,
+                        painter = painterResource(
+                            if (isNightMode) {
+                                weatherState.nightImageResourceId
+                            } else weatherState.dayImageResourceId
+                        )
                     )
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun TodayWeatherPreview() {
-    TodayWeather(
-        modifier = Modifier,
-        isNightMode = true,
-        numberOfDays = 7,
-        temperatureList = listOf("20", "30", "40", "50", "60", "70", "80"),
-        hours = listOf("11:00", "12:00", "01:00", "02:00", "03:00", "04:00", "05:00"),
-        painters = listOf(
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-            painterResource(R.drawable.day_clear_sky),
-        )
-    )
 }

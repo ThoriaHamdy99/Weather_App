@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.presentation.model.WeatherDetails
+import com.example.weather_app.presentation.model.CurrentWeatherDetails
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.borderBackgroundColor
 import com.example.weather_app.ui.theme.cardBackgroundColor
@@ -27,7 +27,7 @@ import com.example.weather_app.ui.theme.primaryTextColor
 fun WeatherDetailsCard(
     modifier: Modifier,
     isNightMode: Boolean,
-    weatherDetails: WeatherDetails
+    currentWeatherDetails: CurrentWeatherDetails
 ) {
     Column(
         modifier = modifier
@@ -46,14 +46,14 @@ fun WeatherDetailsCard(
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(weatherDetails.iconResourceId),
+            painter = painterResource(currentWeatherDetails.currentWeatherStatus.iconResId),
             contentDescription = "details icon",
             modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
         )
 
         Row {
             Text(
-                weatherDetails.value,
+                currentWeatherDetails.value,
                 fontFamily = UrbanistFont,
                 fontWeight = FontWeight.Medium,
                 fontSize = 20.sp,
@@ -62,7 +62,7 @@ fun WeatherDetailsCard(
                 color = primaryTextColor(isNightMode).copy(0.87f)
             )
             Text(
-                weatherDetails.measurement,
+                currentWeatherDetails.currentWeatherStatus.measureTool,
                 fontFamily = UrbanistFont,
                 fontWeight = FontWeight.Medium,
                 fontSize = 20.sp,
@@ -73,7 +73,7 @@ fun WeatherDetailsCard(
         }
 
         Text(
-            weatherDetails.title,
+            currentWeatherDetails.currentWeatherStatus.statusName,
             fontFamily = UrbanistFont,
             fontWeight = FontWeight.Normal,
             fontSize = 14.sp,

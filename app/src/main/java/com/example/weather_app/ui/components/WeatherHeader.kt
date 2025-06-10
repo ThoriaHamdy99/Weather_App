@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.presentation.model.WeatherState
+import com.example.weather_app.presentation.model.CurrentTemperatureUIModel
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.primaryTextColor
 
@@ -24,10 +24,7 @@ import com.example.weather_app.ui.theme.primaryTextColor
 fun WeatherHeader(
     modifier: Modifier,
     isNightMode: Boolean,
-    temperature: String,
-    weatherState: WeatherState,
-    highTemperature: String,
-    lowTemperature: String
+    currentTemperatureUiModel: CurrentTemperatureUIModel
 ) {
     Column(
         modifier.fillMaxWidth(),
@@ -36,8 +33,8 @@ fun WeatherHeader(
 
     ) {
         Image(
-            painter = if (isNightMode) painterResource(weatherState.nightImageResourceId) else painterResource(
-                weatherState.dayImageResourceId
+            painter = if (isNightMode) painterResource(currentTemperatureUiModel.weatherState.nightImageResourceId) else painterResource(
+                currentTemperatureUiModel.weatherState.dayImageResourceId
             ),
             contentDescription = "image",
             modifier = Modifier
@@ -46,7 +43,7 @@ fun WeatherHeader(
         )
 
         Text(
-            text = "$temperature°C",
+            text = "${currentTemperatureUiModel.temperature}°C",
             fontFamily = UrbanistFont,
             fontWeight = FontWeight.SemiBold,
             fontSize = 64.sp,
@@ -56,7 +53,7 @@ fun WeatherHeader(
         )
 
         Text(
-            text = weatherState.state,
+            text = currentTemperatureUiModel.weatherState.state,
             fontFamily = UrbanistFont,
             fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
@@ -78,8 +75,8 @@ fun WeatherHeader(
                     horizontal = 24.dp, vertical = 8.dp
                 ),
             isNightMode,
-            highTemperature,
-            lowTemperature,
+            currentTemperatureUiModel.maxTemp,
+            currentTemperatureUiModel.minTemp,
             16.sp,
             8.dp
         )
