@@ -10,7 +10,12 @@ class LocationRepositoryImpl(
     private val locationDataSource: LocationDataSource
 ) : LocationRepository, BaseRepository() {
     override suspend fun getCurrentLocation(): LocationModel = super.tryCatch(
-        onSuccess = { locationDataSource.getCurrentLocation().toModel() ?: throw NoLocationFoundException() },
-        onFailure = { throw NoLocationFoundException() }
+        onSuccess = {
+            locationDataSource.getCurrentLocation().toModel()
+        },
+        onFailure = { throwable ->
+            throwable.printStackTrace()
+            throw NoLocationFoundException()
+        }
     )
 }

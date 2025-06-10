@@ -8,5 +8,5 @@ data class DailyDto(
     @SerialName("time") val time: List<String>,
     @SerialName("temperature_2m_max") val maxTemperature: List<Double>,
     @SerialName("temperature_2m_min") val minTemperature: List<Double>,
-    @SerialName("weathercode") val weatherCode: List<Int>
+    @SerialName("weather_code") val weatherCode: List<Int>
 )

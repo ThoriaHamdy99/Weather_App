@@ -14,5 +14,5 @@ data class CurrentWeatherDto(
     @SerialName("pressure_msl") val pressure: Double,
     @SerialName("apparent_temperature") val apparentTemperature: Double,
     @SerialName("is_day") val isDay: Double,
-    @SerialName("weathercode") val weatherCode: Int,
+    @SerialName("weather_code") val weatherCode: Int,
 )

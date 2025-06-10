@@ -12,21 +12,29 @@ class WeatherDataSourceImpl(
     private val weatherLink: String
 ) : WeatherDataSource {
     override suspend fun getWeather(locationModel: LocationModel): WeatherResponse? {
-        return httpClientProvider.createHttpClient(weatherLink).get("forecast") {
+        val response = httpClientProvider.createHttpClient(weatherLink).get("forecast") {
             parameter("latitude", locationModel.latitude)
             parameter("longitude", locationModel.longitude)
-            parameter("hourly", "time,temperature_2m,weather_code")
-            parameter("daily", "temperature_2m_max,temperature_2m_min,weathercode")
+            parameter("hourly", "temperature_2m,weather_code")
+            parameter("daily", "temperature_2m_max,temperature_2m_min,weather_code")
             parameter(
                 "current",
                 "temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation_probability,uv_index,pressure_msl,is_day,weather_code,apparent_temperature"
             )
             parameter("forecast_days", "8")
-            parameter("timezone", "auto")
         }.body<WeatherResponse?>()
+        println(response)
+        return response
     }
     /*
-        https://api.open-meteo.com/v1/forecast?latitude=28.3&longitude=30&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m&current=temperature_2m,wind_speed_10m,relative_humidity_2m,precipitation_probability,uv_index,pressure_msl,is_day,weather_code,apparent_temperature&forecast_days=8&timezone=auto
-
+https://api.open-meteo.com/v1/forecast?
+latitude=28.3
+&longitude=30
+&daily=temperature_2m_max,temperature_2m_min,weather_code
+&hourly=temperature_2m,weather_code
+&current=temperature_2m,wind_speed_10m,relative_humidity_2m,
+precipitation_probability,uv_index,pressure_msl,is_day,weather_code,apparent_temperature
+&forecast_days=8
+&timezone=auto
         */
 }

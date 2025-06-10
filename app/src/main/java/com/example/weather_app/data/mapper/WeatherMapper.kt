@@ -38,7 +38,7 @@ fun WeatherResponse.toDomain(): WeatherForecast {
     )
 
     return WeatherForecast(
-        cityName = timezone.split("/")[1],
+        cityName = timezone.split("/")[0],
         current = currentWeather,
         hourly = hourlyForecast,
         daily = dailyForecast

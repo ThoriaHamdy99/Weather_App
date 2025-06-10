@@ -10,8 +10,8 @@ class LocationDataSourceImpl(
     private val ipLocationLink: String,
 ) : LocationDataSource {
 
-    override suspend fun getCurrentLocation(): LocationDto? {
+    override suspend fun getCurrentLocation(): LocationDto {
         return httpClientProvider.createHttpClient(ipLocationLink)
-            .get("json").body<LocationDto?>()
+            .get("").body<LocationDto>()
     }
 }

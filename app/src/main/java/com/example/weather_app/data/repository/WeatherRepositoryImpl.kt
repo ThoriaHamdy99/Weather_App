@@ -16,7 +16,10 @@ class WeatherRepositoryImpl(
                 weatherDataSource.getWeather(locationModel)?.toDomain()
                     ?: throw NoWeatherFoundException()
             },
-            onFailure = { throw NoWeatherFoundException() }
+            onFailure = { throwable ->
+                throwable.printStackTrace()
+                throw NoWeatherFoundException()
+            }
         )
 }
 
