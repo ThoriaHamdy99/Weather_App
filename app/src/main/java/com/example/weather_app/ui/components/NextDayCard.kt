@@ -48,8 +48,9 @@ fun NextDayCard(
             painter = painter,
             contentDescription = "image",
             modifier = Modifier
-                .padding(vertical = 15.dp)
-                .height(height = 32.dp)
+                .fillMaxWidth()
+                .padding(vertical = 7.dp)
+                .height(height = 40.dp)
                 .weight(1f),
             contentScale = ContentScale.FillHeight
         )

@@ -62,6 +62,7 @@ fun NextDaysWeather(
                     borderBackgroundColor(isNightMode).copy(0.08f),
                     RoundedCornerShape(24.dp)
                 )
+                .padding(top = 4.dp)
         ) {
             Column {
                 for (i in 0..<numberOfNextDays) {
