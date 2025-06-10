@@ -14,8 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.domain.model.DailyWeather
-import com.example.weather_app.presentation.model.WeatherState
+import com.example.weather_app.presentation.model.DailyWeatherUiModel
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.borderBackgroundColor
 import com.example.weather_app.ui.theme.cardBackgroundColor
@@ -26,8 +25,7 @@ fun NextDaysWeather(
     modifier: Modifier = Modifier,
     isNightMode: Boolean,
     numberOfNextDays: Int,
-    dailyWeather: List<DailyWeather>
-
+    dailyWeather: List<DailyWeatherUiModel>
 ) {
     Column(
         modifier = modifier
@@ -60,23 +58,20 @@ fun NextDaysWeather(
                 .padding(top = 4.dp)
         ) {
             Column {
-                dailyWeather.forEach { dailyWeather ->
-                    val weatherState = WeatherState.getWeatherState(dailyWeather.weatherCode)
+                dailyWeather.forEachIndexed { index, weather ->
                     NextDayCard(
                         isNightMode = isNightMode,
-                        day = dailyWeather.date,
-                        painter = painterResource(
-                            if (isNightMode) {
-                                weatherState.nightImageResourceId
-                            } else weatherState.dayImageResourceId
-                        ),
-                        highTemperature = dailyWeather.maxTemp.toInt().toString(),
-                        lowTemperature = dailyWeather.minTemp.toInt().toString()
+                        day = weather.dayOfWeek,
+                        painter = painterResource(weather.weatherIcon),
+                        highTemperature = weather.maxTemp,
+                        lowTemperature = weather.minTemp
                     )
-                    HorizontalDivider(
-                        thickness = 1.dp,
-                        color = borderBackgroundColor(isNightMode).copy(0.08f),
-                    )
+                    if ((index + 1) != 7) {
+                        HorizontalDivider(
+                            thickness = 1.dp,
+                            color = borderBackgroundColor(isNightMode).copy(0.08f),
+                        )
+                    }
                 }
             }
         }

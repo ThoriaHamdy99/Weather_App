@@ -13,8 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.domain.model.HourlyWeather
-import com.example.weather_app.presentation.model.WeatherState
+import com.example.weather_app.presentation.model.HourlyWeatherUiModel
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.primaryTextColor
 
@@ -22,8 +21,7 @@ import com.example.weather_app.ui.theme.primaryTextColor
 fun TodayWeather(
     modifier: Modifier,
     isNightMode: Boolean,
-    numberOfDays: Int,
-    hourlyWeatherList: List<HourlyWeather>
+    hourlyWeatherList: List<HourlyWeatherUiModel>
 ) {
     Column(
         modifier = modifier
@@ -44,19 +42,15 @@ fun TodayWeather(
             contentPadding = PaddingValues(horizontal = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            hourlyWeatherList.forEach { hourlyWeather ->
-                val weatherState = WeatherState.getWeatherState(hourlyWeather.weatherCode)
+            for (i in 0..23) {
+                if (hourlyWeatherList.isEmpty()) return@LazyRow
                 item {
                     TodayWeatherCard(
                         Modifier.width(88.dp),
                         isNightMode = isNightMode,
-                        temperature = hourlyWeather.temperature.toInt().toString(),
-                        hour = hourlyWeather.time,
-                        painter = painterResource(
-                            if (isNightMode) {
-                                weatherState.nightImageResourceId
-                            } else weatherState.dayImageResourceId
-                        )
+                        temperature = hourlyWeatherList[i].temperature,
+                        hour = hourlyWeatherList[i].time,
+                        painter = painterResource(hourlyWeatherList[i].weatherIcon)
                     )
                 }
             }

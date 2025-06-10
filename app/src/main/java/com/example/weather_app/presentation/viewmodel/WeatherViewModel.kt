@@ -1,6 +1,8 @@
 package com.example.weather_app.presentation.viewmodel
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather_app.domain.repository.LocationRepository
@@ -17,6 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 class WeatherViewModel(
     private val weatherRepository: WeatherRepository,
     private val locationRepository: LocationRepository
@@ -35,10 +38,12 @@ class WeatherViewModel(
             try {
                 val locationModel = locationRepository.getCurrentLocation()
                 val weather = weatherRepository.getWeather(locationModel)
-                if (locationModel.country != null) {
-                    weather.cityName = locationModel.country
+                val updatedWeather = if (locationModel.country != null) {
+                    weather.copy(cityName = locationModel.country)
+                } else {
+                    weather
                 }
-                _uiState.update { weather.mapToUiModel() }
+                _uiState.update { updatedWeather.mapToUiModel() }
             } catch (throwable: Throwable) {
                 Log.d(WeatherViewModel::class.java.name, "No Data: ${throwable.message}")
             }

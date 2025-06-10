@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
@@ -31,7 +32,7 @@ fun WeatherScreen(
     viewModel: WeatherViewModel
 ) {
 
-    val weatherUiModel = viewModel.uiState.value
+    val weatherUiModel = viewModel.uiState.collectAsState().value
     val isNightMode = weatherUiModel.isNightMode
 
     LazyColumn(
@@ -79,7 +80,6 @@ fun WeatherScreen(
             TodayWeather(
                 modifier = Modifier,
                 isNightMode = isNightMode,
-                numberOfDays = 7,
                 weatherUiModel.hourlyWeather
             )
         }
