@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weather_app.domain.model.LocationModel
+import com.example.weather_app.domain.model.WeatherForecast
 import com.example.weather_app.domain.repository.LocationRepository
 import com.example.weather_app.domain.repository.WeatherRepository
 import com.example.weather_app.ui.mapper.mapToUiModel
@@ -38,16 +40,29 @@ class WeatherViewModel(
             try {
                 val locationModel = locationRepository.getCurrentLocation()
                 val weather = weatherRepository.getWeather(locationModel)
-                val updatedWeather = if (locationModel.country != null) {
-                    weather.copy(cityName = locationModel.country)
-                } else {
-                    weather
-                }
-                _uiState.update { updatedWeather.mapToUiModel() }
+                onGetWeatherSuccess(locationModel, weather)
             } catch (throwable: Throwable) {
-                Log.d(WeatherViewModel::class.java.name, "No Data: ${throwable.message}")
+                onError(throwable)
             }
         }
+    }
+
+    private fun onError(throwable: Throwable) {
+        Log.d(WeatherViewModel::class.java.name, "No Data: ${throwable.message}")
+    }
+
+    private fun onGetWeatherSuccess(
+        locationModel: LocationModel,
+        weather: WeatherForecast
+    ) {
+        val updatedWeather = if (locationModel.city != null) {
+            weather.copy(cityName = locationModel.city)
+        } else if (locationModel.country != null) {
+            weather.copy(cityName = locationModel.country)
+        } else {
+            weather
+        }
+        _uiState.update { updatedWeather.mapToUiModel() }
     }
 }
 
