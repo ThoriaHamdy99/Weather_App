@@ -3,7 +3,6 @@ package com.example.weather_app.ui.screens
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,15 +18,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.weather_app.R
-import com.example.weather_app.ui.model.WeatherUiModel
-import com.example.weather_app.ui.viewmodel.WeatherViewModel
 import com.example.weather_app.ui.components.LocationHeader
 import com.example.weather_app.ui.components.NextDaysWeather
 import com.example.weather_app.ui.components.TodayWeather
 import com.example.weather_app.ui.components.WeatherDetails
 import com.example.weather_app.ui.components.WeatherHeader
+import com.example.weather_app.ui.model.WeatherUiModel
 import com.example.weather_app.ui.theme.primaryBackgroundColor
 import com.example.weather_app.ui.theme.secondaryBackgroundColor
+import com.example.weather_app.ui.viewmodel.WeatherViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("StateFlowValueCalledInComposition")
