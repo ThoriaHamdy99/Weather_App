@@ -1,4 +1,4 @@
-package com.example.weather_app.presentation.viewmodel
+package com.example.weather_app.ui.viewmodel
 
 import android.os.Build
 import android.util.Log
@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather_app.domain.repository.LocationRepository
 import com.example.weather_app.domain.repository.WeatherRepository
-import com.example.weather_app.presentation.mapper.mapToUiModel
-import com.example.weather_app.presentation.model.CurrentTemperatureUIModel
-import com.example.weather_app.presentation.model.CurrentWeatherDetails
-import com.example.weather_app.presentation.model.CurrentWeatherStatus
-import com.example.weather_app.presentation.model.WeatherState
-import com.example.weather_app.presentation.model.WeatherUiModel
+import com.example.weather_app.ui.mapper.mapToUiModel
+import com.example.weather_app.ui.model.CurrentTemperatureUIModel
+import com.example.weather_app.ui.model.CurrentWeatherDetails
+import com.example.weather_app.ui.model.CurrentWeatherStatus
+import com.example.weather_app.ui.model.WeatherState
+import com.example.weather_app.ui.model.WeatherUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

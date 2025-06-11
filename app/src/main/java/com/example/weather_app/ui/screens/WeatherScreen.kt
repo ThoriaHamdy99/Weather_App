@@ -1,4 +1,4 @@
-package com.example.weather_app.presentation.screens
+package com.example.weather_app.ui.screens
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.weather_app.R
-import com.example.weather_app.presentation.model.WeatherUiModel
-import com.example.weather_app.presentation.viewmodel.WeatherViewModel
+import com.example.weather_app.ui.model.WeatherUiModel
+import com.example.weather_app.ui.viewmodel.WeatherViewModel
 import com.example.weather_app.ui.components.LocationHeader
 import com.example.weather_app.ui.components.NextDaysWeather
 import com.example.weather_app.ui.components.TodayWeather

@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import com.example.weather_app.di.appModule
-import com.example.weather_app.presentation.screens.WeatherScreen
-import com.example.weather_app.presentation.viewmodel.WeatherViewModel
+import com.example.weather_app.ui.screens.WeatherScreen
+import com.example.weather_app.ui.viewmodel.WeatherViewModel
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

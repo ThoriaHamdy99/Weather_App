@@ -1,4 +1,4 @@
-package com.example.weather_app.presentation.model
+package com.example.weather_app.ui.model
 
 import androidx.annotation.DrawableRes
 

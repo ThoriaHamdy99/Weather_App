@@ -42,9 +42,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.presentation.model.CurrentTemperatureUIModel
-import com.example.weather_app.presentation.model.getImageResId
-import com.example.weather_app.presentation.model.getShadowColor
+import com.example.weather_app.ui.model.CurrentTemperatureUIModel
+import com.example.weather_app.ui.model.getImageResId
+import com.example.weather_app.ui.model.getShadowColor
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.primaryTextColor
 

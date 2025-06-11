@@ -1,4 +1,4 @@
-package com.example.weather_app.presentation.utils
+package com.example.weather_app.ui.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi

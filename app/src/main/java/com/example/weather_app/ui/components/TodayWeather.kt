@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weather_app.presentation.model.HourlyWeatherUiModel
+import com.example.weather_app.ui.model.HourlyWeatherUiModel
 import com.example.weather_app.ui.theme.UrbanistFont
 import com.example.weather_app.ui.theme.primaryTextColor
 

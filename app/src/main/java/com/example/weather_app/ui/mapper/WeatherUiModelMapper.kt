@@ -1,18 +1,18 @@
-package com.example.weather_app.presentation.mapper
+package com.example.weather_app.ui.mapper
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.weather_app.domain.model.DailyWeather
 import com.example.weather_app.domain.model.HourlyWeather
 import com.example.weather_app.domain.model.WeatherForecast
-import com.example.weather_app.presentation.model.CurrentTemperatureUIModel
-import com.example.weather_app.presentation.model.CurrentWeatherDetails
-import com.example.weather_app.presentation.model.CurrentWeatherStatus
-import com.example.weather_app.presentation.model.DailyWeatherUiModel
-import com.example.weather_app.presentation.model.HourlyWeatherUiModel
-import com.example.weather_app.presentation.model.WeatherState
-import com.example.weather_app.presentation.model.WeatherUiModel
-import com.example.weather_app.presentation.utils.getWeekday
+import com.example.weather_app.ui.model.CurrentTemperatureUIModel
+import com.example.weather_app.ui.model.CurrentWeatherDetails
+import com.example.weather_app.ui.model.CurrentWeatherStatus
+import com.example.weather_app.ui.model.DailyWeatherUiModel
+import com.example.weather_app.ui.model.HourlyWeatherUiModel
+import com.example.weather_app.ui.model.WeatherState
+import com.example.weather_app.ui.model.WeatherUiModel
+import com.example.weather_app.ui.utils.getWeekday
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun WeatherForecast.mapToUiModel(): WeatherUiModel {
