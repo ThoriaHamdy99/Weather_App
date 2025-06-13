@@ -2,6 +2,7 @@ package com.example.weather_app.ui.screens
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.view.Window
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import com.example.weather_app.R
 import com.example.weather_app.ui.components.LocationHeader
 import com.example.weather_app.ui.components.NextDaysWeather
@@ -33,20 +38,24 @@ import com.example.weather_app.ui.viewmodel.WeatherViewModel
 @Composable
 fun WeatherScreen(
     modifier: Modifier = Modifier,
+    window: Window,
     viewModel: WeatherViewModel
 ) {
 
     val weatherUiModel = viewModel.uiState.collectAsState().value
     val isNightMode = weatherUiModel.isNightMode
-    WeatherScreenContent(modifier, weatherUiModel, isNightMode)
+    WindowCompat.getInsetsController(window, LocalView.current).isAppearanceLightStatusBars = false
+    WeatherScreenContent(modifier, window, weatherUiModel, isNightMode)
 }
 
 @Composable
 fun WeatherScreenContent(
     modifier: Modifier,
+    window: Window,
     weatherUiModel: WeatherUiModel,
     isNightMode: Boolean
 ) {
+    updateStatusBarTextColor(weatherUiModel, window)
 
     val lazyListState = rememberLazyListState()
     val animationTriggerHeight = 250f
@@ -112,6 +121,18 @@ fun WeatherScreenContent(
                 dailyWeather = weatherUiModel.dailyWeather
             )
         }
+    }
+}
+
+@Composable
+private fun updateStatusBarTextColor(
+    weatherUiModel: WeatherUiModel,
+    window: Window
+) {
+    if (weatherUiModel.isNightMode) {
+        window.statusBarColor = Color.White.toArgb()
+    } else {
+        window.statusBarColor = Color.Black.toArgb()
     }
 }
 
