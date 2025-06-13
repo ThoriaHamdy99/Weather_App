@@ -35,7 +35,10 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                WeatherScreen(viewModel = get<WeatherViewModel>())
+                WeatherScreen(
+                    window = this@MainActivity.window,
+                    viewModel = get<WeatherViewModel>()
+                )
             }
         }
     }
